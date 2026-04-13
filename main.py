@@ -16,14 +16,20 @@ train_dataset = datasets.CIFAR10(root="./data", train=True, download=True, trans
 test_dataset = datasets.CIFAR10(root="./data", train=False, download=True, transform=transform)
 
 model = nn.Sequential(
+    nn.Conv2d(3, 32, kernel_size=3, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Conv2d(32, 64, kernel_size=3, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(2),
     nn.Flatten(),
-    nn.Linear(3072, 128),
+    nn.Linear(64 * 8 * 8, 128),
     nn.ReLU(),
     nn.Linear(128, 64),
     nn.ReLU(),
     nn.Linear(64, 10),
 )
-model.load_state_dict(torch.load("CIFAR.pth", map_location="cpu"))
+model.load_state_dict(torch.load("CNN.pth", map_location="cpu"))
 model.eval()
 
 app = FastAPI()

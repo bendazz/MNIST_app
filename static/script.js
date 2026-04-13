@@ -10,7 +10,7 @@ let running = false;
 let streak = 0;
 
 // Build a simple network diagram: layers of dots with connecting lines.
-const layers = [6, 5, 5, 4];
+const layers = [3, 6, 6, 5, 4];
 const nodesGroup = document.getElementById("nodes");
 const edgesGroup = document.getElementById("edges");
 const svgNS = "http://www.w3.org/2000/svg";
